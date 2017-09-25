@@ -13,9 +13,18 @@ namespace GerenciaIgreja.Controllers.Cadastro
     public class FuncaoMinisterialController : Controller
     {
         appFuncaoMinisterial aplicacaoFuncMinisterial = new appFuncaoMinisterial();
+
+        const int quantMaxLinhasPagina = 5;
         public ActionResult Index()
         {
-            return View(aplicacaoFuncMinisterial.Listar());
+            var quant = aplicacaoFuncMinisterial.RecuperaQuantidade();
+            ViewBag.ListaTamanhoPagina = new SelectList(new int[] { quantMaxLinhasPagina, 10, 15 }, quantMaxLinhasPagina);
+            ViewBag.QuantMaxLinhasPagina = quantMaxLinhasPagina;
+            ViewBag.PaginaAtual = 1;
+            var difQuantPaginas = (quant % ViewBag.QuantMaxLinhasPagina) > 0 ? 1 : 0;
+            ViewBag.QuantPaginas = (quant / ViewBag.QuantMaxLinhasPagina) + difQuantPaginas;
+
+            return View(aplicacaoFuncMinisterial.paginacao(ViewBag.PaginaAtual,ViewBag.QuantMaxLinhasPagina));
         }
 
         public JsonResult Recuperar(int Id)
@@ -62,6 +71,12 @@ namespace GerenciaIgreja.Controllers.Cadastro
         {
             return Json(aplicacaoFuncMinisterial.Excluir(Id));
         }
+        public JsonResult paginacao(int pagina)
+        {
+            var lista = aplicacaoFuncMinisterial.paginacao(pagina, quantMaxLinhasPagina);
+
+            return Json(lista);
+        }
     }
 
-    }
+}
