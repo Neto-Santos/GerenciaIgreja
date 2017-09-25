@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -71,9 +71,9 @@ namespace GerenciaIgreja.Controllers.Cadastro
         {
             return Json(aplicacaoFuncMinisterial.Excluir(Id));
         }
-        public JsonResult paginacao(int pagina)
-        {
-            var lista = aplicacaoFuncMinisterial.paginacao(pagina, quantMaxLinhasPagina);
+        public JsonResult paginacao(int pagina,int tamPagina)
+        {             
+            var lista = aplicacaoFuncMinisterial.paginacao(pagina,tamPagina);
 
             return Json(lista);
         }
