@@ -10,11 +10,11 @@ namespace GerenciaIgreja.Contexto
     public class Contexto:DbContext
     {
         public Contexto():base("GerenciaIgreja")
-        {
-            Database.CreateIfNotExists();
+        {            
         }
 
         public DbSet<FuncaoMinisterial> FuncaoMinisterial { get; set; }
+        public DbSet<Membro> Membro { get; set; }
 
     }
 }
