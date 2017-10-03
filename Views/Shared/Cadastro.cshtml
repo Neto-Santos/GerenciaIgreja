@@ -70,7 +70,21 @@
         </div>
     </fieldset>
 </div>
+
 @section Scripts{
     <script src="~/Scripts/Cadastro/CadBase.js"></script>
     @RenderSection("Scripts", true)
 }
+
+@*@section Scripts{
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script>
+        var tituloPagina = '@ViewBag.Title';
+        var url_excluir = '@Url.Action("Excluir", "Membro")';
+        var url_confirmar = '@Url.Action("Inserir", "Membro")';
+        var url_page_click = '@Url.Action("paginacao", "Membro")';
+        var url_tam_pag_change = '@Url.Action("paginacao", "Membro")';
+        var url_alterar = '@Url.Action("Recuperar", "Membro")';
+    </script>
+    <script src="~/Scripts/Cadastro/FuncaoMinisterial.js"></script>
+}*@
